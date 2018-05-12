@@ -20,10 +20,10 @@ class Login extends Component {
     });
   };
 
-  //validate users
-  handleFormSubmit = event => {
+  // Validate users' login
+  validateUser = event => {
+    //Preventing default event (refreshing the page)
     event.preventDefault();
-    // console.log('button was clicked');
     console.log(` User: ${this.state.userId} \n ID: ${this.state.password}`);
     this.setState({
       userId: "",
@@ -68,7 +68,7 @@ class Login extends Component {
                 <button className='roundedButtoninfo' type='button' align='top'></button>
               </a>
             </span>
-            <input onClick={this.handleFormSubmit} className='loginButtonblue' id='' type='submit' value='Login' />
+            <input onClick={this.validateUser} className='loginButtonblue' id='' type='submit' value='Login' />
           </div>
         </div>
       </div>
