@@ -7,6 +7,8 @@ const App = () => (
 
   <div className="container">
     <Login />
+    
+    <ErrorLogin />
   </div>
   
 );

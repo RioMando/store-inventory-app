@@ -1,22 +1,35 @@
 import React, {Component} from "react";
-import '../../css/OM.css'
+import '../../css/OM.css';
+import users from './users.json';
 
 class Login extends Component {
-  
+  //Setting the component's initial state
   state = {
     // user's info. Assumption: there is a way to sign in users and there is a db to handle this information.
-    users: [
-      { userId: 'AB1234', password: 'hello' },
-      { userId: 'CD5678', password: 'morning'}
-    ]
+    userId: "",
+    password: ""
   };
   
+  handleInputChange = event => {
+    //Getting the value and name of the input which triggered the change
+    const { name, value } = event.target;
+
+    // Update the input's state
+    this.setState({
+      [name]: value
+    });
+  };
+
   //validate users
-  validateUser = event => {
+  handleFormSubmit = event => {
     event.preventDefault();
     // console.log('button was clicked');
     console.log(` User: ${this.state.userId} \n ID: ${this.state.password}`);
-  }
+    this.setState({
+      userId: "",
+      password: ""
+    });
+  };
 
   render() {
 
@@ -24,11 +37,30 @@ class Login extends Component {
       <div className = 'container3' >
         <div className='loginForm'>
           <div className='selectWidth95'>
-            <input name='userId' id='userId' type='text' className='inputboxBg' size='15' maxLength='15' placeholder='User ID' value={this.state.usereId} />
+            <input
+              value={this.state.userId}
+              name="userId"
+              id="userId"
+              className='inputboxBg'
+              size='15'
+              maxLength='15'
+              placeholder='User ID'
+              onChange={this.handleInputChange}
+              type='text'
+            />
           </div>
           <div className='spacer1' />
           <div className='selectWidth95'>
-            <input name='password' type='password' className='inputboxBg' size='15' maxLength='15' placeholder='Password' value={this.state.password} />
+            <input
+              value={this.state.password}
+              name='password'
+              type='password'
+              className='inputboxBg'
+              size='15'
+              maxLength='15'
+              placeholder='Password'
+              onChange={this.handleInputChange}
+            />
           </div>
           <div className='container alignCenter'>
             <span className='floatLeft marginTop15'>
@@ -36,7 +68,7 @@ class Login extends Component {
                 <button className='roundedButtoninfo' type='button' align='top'></button>
               </a>
             </span>
-            <input onClick={this.validateUser} className='loginButtonblue' id='' type='submit' value='Login' />
+            <input onClick={this.handleFormSubmit} className='loginButtonblue' id='' type='submit' value='Login' />
           </div>
         </div>
       </div>
